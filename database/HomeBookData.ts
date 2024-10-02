@@ -12,25 +12,25 @@ import {TheCaseBookOfSherlockHolmes} from './sherlock-holmes2/5.CaseBookOfSherlo
 export const booksList = [
   {
     id: 1,
-    backgroundColor: '#f9bbd0',
+    backgroundColor: '#c3c7e6',
     image: require('../assets/books/1.jpg'),
     name: 'দ্য অ্যাডভেঞ্চারস অফ শার্লক হোমস',
   },
   {
     id: 2,
-    backgroundColor: '#c3c7e6',
+    backgroundColor: '#f8c8da',
     image: require('../assets/books/2.jpg'),
     name: 'দ্য মেমোয়ার্স অফ শার্লক হোমস',
   },
   {
     id: 3,
-    backgroundColor: '#aed9d4',
+    backgroundColor: '#b3dfda',
     image: require('../assets/books/3.jpg'),
     name: 'দ্য রিটার্ন অফ শার্লক হোমস',
   },
   {
     id: 4,
-    backgroundColor: '#9dc2bf',
+    backgroundColor: '#c8d0f2',
     image: require('../assets/books/4.jpg'),
     name: 'হিজ লাস্ট বাউ',
   },
@@ -40,34 +40,31 @@ export const booksList = [
     image: require('../assets/books/5.jpg'),
     name: 'দ্য কেস বুক অফ শার্লক হোমস',
   },
-
   {
     id: 6,
-    backgroundColor: '#e0e2d7',
+    backgroundColor: '#d4dbc3',
     image: require('../assets/books/6.jpg'),
     name: 'দ্য ভ্যালি অফ ফিয়ার (আতঙ্কের উপত্যকা)',
   },
   {
     id: 7,
-    backgroundColor: '#ded2c2',
-    image: require('../assets/books/10.jpg'),
-    name: 'দ্য সাইন অব ফোর (শার্লক হোমস)',
-  },
-  {
-    id: 8,
-
-    // backgroundColor: '#9dc2bf',
-
-    backgroundColor: '#c2decd',
+    backgroundColor: '#b3d3c5',
     image: require('../assets/books/7.jpg'),
     name: 'দ্য হাউন্ড অব দ্য বাস্কারভিলস',
   },
   {
+    id: 8,
+    backgroundColor: '#e6d3bc', 
+    image: require('../assets/books/10.jpg'),
+    name: 'দ্য সাইন অব ফোর (শার্লক হোমস)',
+  },
+  {
     id: 9,
-    backgroundColor: '#ded9c2',
+    backgroundColor: '#e3d9b9', // Soft Cream
     image: require('../assets/books/9.jpg'),
     name: 'আ স্টাডি ইন স্কারলেট (রক্ত সমীক্ষা)',
   },
+  
 ];
 
 export const booksInternalData = [
@@ -97,12 +94,13 @@ export const booksInternalData = [
   },
   {
     id: 7,
-    data: TheSignOfTheFour,
+    data: TheHoundOfTheBaskervilles,
   },
   {
     id: 8,
-    data: TheHoundOfTheBaskervilles,
+    data: TheSignOfTheFour,
   },
+
   {
     id: 9,
     data: AStudyInScarlet,

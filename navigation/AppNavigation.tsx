@@ -1,8 +1,4 @@
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import React, {FC} from 'react';
 import {NavigationContainer, DrawerActions} from '@react-navigation/native';
 
@@ -29,6 +25,7 @@ import MarkedDetalse from '../screens/MarkedDetalse';
 import BooksWriter from '../screens/BooksWriter';
 import AboutApp from '../screens/AboutApp';
 import NeedAnApp from '../screens/NeedAnApp';
+import {useThemeColors} from '../context/ThemeContext';
 // Fixed typo
 
 const DrawerNavigation: FC = () => {
@@ -55,6 +52,8 @@ const AppNavigation: FC = () => {
     setCtlBookeMarked,
   } = UseAppContext();
 
+  const {appHeader, textColor, iconColor, shitBgColor, indicatorBgColor} = useThemeColors();
+
   return (
     <>
       <GestureHandlerRootView>
@@ -67,13 +66,13 @@ const AppNavigation: FC = () => {
                 headerLeft: () => (
                   <TouchableOpacity
                     onPress={() =>
-                      navigation.dispatch(DrawerActions.openDrawer())
+                      navigation.dispatch(DrawerActions.toggleDrawer())
                     }
                     style={styles.menuButton}>
                     <Bars3BottomLeftIcon
                       size={29}
                       strokeWidth={2}
-                      color="#0a1930"
+                      color={iconColor}
                     />
                   </TouchableOpacity>
                 ),
@@ -82,7 +81,7 @@ const AppNavigation: FC = () => {
                     style={{
                       fontFamily: 'MeriendaBold',
                       fontSize: 20,
-                      color: '#0a1930',
+                      color: textColor,
                       marginTop: 5,
                     }}>
                     {/* শার্লক হোমস সমগ্র */}
@@ -93,7 +92,7 @@ const AppNavigation: FC = () => {
                 headerTitleAlign: 'center',
                 headerStyle: {
                   // backgroundColor: '#fcfbff',
-                  backgroundColor: '#f6f8fa',
+                  backgroundColor: appHeader,
                 },
               })}
             />
@@ -105,15 +104,15 @@ const AppNavigation: FC = () => {
                     style={{
                       fontFamily: 'kalpurush',
                       fontSize: 22,
-                      color: '#0a1930',
+                      color: textColor,
                       marginTop: 5,
                     }}>
                     {bookChapter.data[0].bnBookName}
                   </Text>
                 ),
-
+                headerTintColor: iconColor,
                 headerStyle: {
-                  backgroundColor: '#f6f8fa',
+                  backgroundColor: appHeader,
                 },
                 // headerSearchBarOptions: true
                 // gestureEnabled: false,
@@ -130,17 +129,17 @@ const AppNavigation: FC = () => {
                     style={{
                       fontFamily: 'kalpurush',
                       fontSize: 22,
-                      color: '#0a1930',
+                      color: textColor,
                       marginTop: 5,
                     }}>
                     {route.params.selector}
                   </Text>
                 ),
                 headerTitleAlign: 'center',
-                headerTintColor: '#000',
+                headerTintColor: iconColor,
                 headerLeft: () => null, // Use a function to return null
                 headerStyle: {
-                  backgroundColor: '#f6f8fa',
+                  backgroundColor: appHeader,
                 },
                 gestureEnabled: false,
               })}
@@ -155,7 +154,7 @@ const AppNavigation: FC = () => {
                     style={{
                       fontFamily: 'MeriendaBold',
                       fontSize: 20,
-                      color: '#0a1930',
+                      color: textColor,
                       marginTop: -2,
                     }}>
                     Bookmarked
@@ -170,16 +169,16 @@ const AppNavigation: FC = () => {
                     <DocumentPlusIcon
                       size={30}
                       strokeWidth={2}
-                      color="#55585e"
+                      color={iconColor}
                       style={{marginRight: 3}}
                     />
                   </TouchableOpacity>
                 ),
                 headerTitleAlign: 'center',
-                headerTintColor: '#000',
+                headerTintColor: iconColor,
                 headerLeft: () => null, // Use a function to return null
                 headerStyle: {
-                  backgroundColor: '#f6f8fa',
+                  backgroundColor: appHeader,
                 },
                 gestureEnabled: false,
               })}
@@ -194,7 +193,7 @@ const AppNavigation: FC = () => {
                     style={{
                       fontFamily: 'MeriendaBold',
                       fontSize: 20,
-                      color: '#0a1930',
+                      color: textColor,
                       marginTop: -2,
                     }}>
                     Bookmarked
@@ -208,7 +207,7 @@ const AppNavigation: FC = () => {
                       <PencilSquareIcon
                         size={30}
                         strokeWidth={2}
-                        color="#55585e"
+                        color={iconColor}
                         style={{marginRight: 10}}
                       />
                     </TouchableOpacity>
@@ -218,17 +217,17 @@ const AppNavigation: FC = () => {
                       <TrashIcon
                         size={30}
                         strokeWidth={2}
-                        color="#55585e"
+                        color={iconColor}
                         style={{marginLeft: 5}}
                       />
                     </TouchableOpacity>
                   </>
                 ),
                 headerTitleAlign: 'center',
-                headerTintColor: '#000',
+                headerTintColor: iconColor,
                 headerLeft: () => null, // Use a function to return null
                 headerStyle: {
-                  backgroundColor: '#f6f8fa',
+                  backgroundColor: appHeader,
                 },
                 gestureEnabled: false,
               })}
@@ -243,16 +242,16 @@ const AppNavigation: FC = () => {
                     style={{
                       fontFamily: 'MeriendaBold',
                       fontSize: 19,
-                      color: '#0a1930',
+                      color: textColor,
                       marginTop: -2,
                     }}>
                     Books Writer
                   </Text>
                 ),
                 headerTitleAlign: 'center',
-                headerTintColor: '#000',
+                headerTintColor: iconColor,
                 headerStyle: {
-                  backgroundColor: '#f6f8fa',
+                  backgroundColor: appHeader,
                 },
               }}
               name="bookswriter"
@@ -266,23 +265,23 @@ const AppNavigation: FC = () => {
                     style={{
                       fontFamily: 'MeriendaBold',
                       fontSize: 19,
-                      color: '#0a1930',
+                      color: textColor,
                       marginTop: -2,
                     }}>
                     About App
                   </Text>
                 ),
                 headerTitleAlign: 'center',
-                headerTintColor: '#000',
+                headerTintColor: iconColor,
                 headerStyle: {
-                  backgroundColor: '#f6f8fa',
+                  backgroundColor: appHeader,
                 },
               }}
               name="aboutapp"
               component={AboutApp}
             />
 
-<Stack.Screen
+            <Stack.Screen
               options={{
                 headerTitle: () => (
                   <Text
@@ -296,15 +295,14 @@ const AppNavigation: FC = () => {
                   </Text>
                 ),
                 headerTitleAlign: 'center',
-                headerTintColor: '#000',
+                headerTintColor: iconColor,
                 headerStyle: {
-                  backgroundColor: '#f6f8fa',
+                  backgroundColor: appHeader,
                 },
               }}
               name="needanapp"
               component={NeedAnApp}
             />
-
           </Stack.Navigator>
 
           {isBottomSheetVisible && (
@@ -314,10 +312,10 @@ const AppNavigation: FC = () => {
               enablePanDownToClose={true}
               // initialSnapIndex={0}
               handleIndicatorStyle={{
-                backgroundColor: '#0a1930',
+                backgroundColor: indicatorBgColor,
                 width: 100,
               }}
-              backgroundStyle={{backgroundColor: '#FFF'}}
+              backgroundStyle={{backgroundColor: shitBgColor}}
               onClose={() => setIsBottomSheetVisible(false)}>
               <BottomSheetScrollView>
                 <SheetInput />

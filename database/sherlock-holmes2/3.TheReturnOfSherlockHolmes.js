@@ -175,18 +175,6 @@ export const TheReturnOfSherlockHolmes = [
         },
       ],
     },
-    {
-      id: 1,
-      title: '',
-      selector: '',
-      writer: '',
-      desciption: [
-        {
-          title: '',
-          desc: ``,
-        },
-      ],
-    },
   ],
 ];
 

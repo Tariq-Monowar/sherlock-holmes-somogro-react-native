@@ -2,8 +2,8 @@
 // 1.A Study in Scarlet
 export const AStudyInScarlet = [
   {
-    enBookName: 'এ স্টাডি ইন স্কারলেট',
-    bnBookName: 'A Study in Scarlet',
+    enBookName: 'A Study in Scarlet',
+    bnBookName: 'এ স্টাডি ইন স্কারলেট',
   },
   [
     {

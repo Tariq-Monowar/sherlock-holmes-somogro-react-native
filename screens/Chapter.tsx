@@ -12,6 +12,7 @@ import {useRoute, RouteProp} from '@react-navigation/native';
 import Clipboard from '@react-native-clipboard/clipboard';
 import {PlusIcon} from 'react-native-heroicons/outline';
 import { UseAppContext } from '../context/AppContext';
+import { useThemeColors } from '../context/ThemeContext';
 
 // Define the type for the route parameters
 type ChapterRouteParams = {
@@ -27,6 +28,8 @@ const Chapter = () => {
   const [clipboardContent, setClipboardContent] = useState('');
   const [shouldRender, setshouldRender] = useState(false);
   const [visibleBookmark, setVisibleBookmark] = useState(false);
+
+  const {appBackground, textColor,  plusButtonBg, plusButtonFg} = useThemeColors()
 
   const route = useRoute<RouteProp<{params: ChapterRouteParams}, 'params'>>();
   const {description} = route.params;
@@ -55,17 +58,17 @@ const Chapter = () => {
 
   return (
     <>
-      <ScrollView  style={styles.container}>
+      <ScrollView  style={{...styles.container, backgroundColor: appBackground}}>
         <View style={{marginTop: 5}}>
           {description?.map((data, index) => {
             return (
               <React.Fragment key={index}>
                 {data?.title && (
-                  <Text style={styles.title} selectable={true}>
+                  <Text style={{...styles.title, color: textColor}} selectable={true}>
                     {data?.title}
                   </Text>
                 )}
-                <Text selectable={true} style={styles.text}>
+                <Text selectable={true} style={{...styles.text, color: textColor}}>
                   {data?.desc}
                 </Text>
               </React.Fragment>
@@ -74,8 +77,8 @@ const Chapter = () => {
         </View>
       </ScrollView>
       {visibleBookmark && (
-        <TouchableOpacity onPress={()=>setIsBottomSheetVisible(true)} style={styles.addBookmarked}>
-          <PlusIcon size={32} strokeWidth={2} color="#fff" />
+        <TouchableOpacity onPress={()=>setIsBottomSheetVisible(true)} style={{...styles.addBookmarked, backgroundColor: plusButtonBg}}>
+          <PlusIcon size={32} strokeWidth={2} color={plusButtonFg} />
         </TouchableOpacity>
       )}
     </>

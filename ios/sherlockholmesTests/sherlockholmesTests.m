@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface sherlockholmesTests : XCTestCase
+@interface holmes_somograhTests : XCTestCase
 
 @end
 
-@implementation sherlockholmesTests
+@implementation holmes_somograhTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL (^)(UIView *view))test
 {

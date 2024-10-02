@@ -12,16 +12,22 @@ import {UseAppContext} from '../context/AppContext';
 import BottomSheet, {BottomSheetScrollView} from '@gorhom/bottom-sheet';
 import {useNavigation} from '@react-navigation/native';
 import SheetInput from '../components/SheetInput';
-import {deleteTodo, getDBConnection} from '../utils/sqllite';
+import { useThemeColors } from '../context/ThemeContext';
+ 
 
 const MarkedDetalse = ({route}: any) => {
-  const navigation = useNavigation<any>();
-  const {ctlBookeMarked, setCtlBookeMarked, reRanderMark, setReRanderMark} =
+
+  const {appBackground, textColor,  buttonColor, shadowColor,  shitBgColor, indicatorBgColor } = useThemeColors()
+ 
+
+  const navigation = useNavigation();
+  const {ctlBookeMarked, setCtlBookeMarked,  deleteTodo, getDBConnection} =
     UseAppContext();
   const {id, title, description} = route.params.data;
+  console.log(id, title, description)
 
-  const [titles, setTitle] = useState<string>(title);
-  const [descriptions, setDescription] = useState<string>(description);
+  const [titles, setTitle] = useState(title);
+  const [descriptions, setDescription] = useState(description);
 
   const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(false);
 
@@ -48,9 +54,9 @@ const MarkedDetalse = ({route}: any) => {
 
   const handleDeleteBookMarked = async () => {
     const db = await getDBConnection();
-    deleteTodo(db, id);
+    if(db) deleteTodo(db, id);
 
-    setReRanderMark(!reRanderMark);
+    // setReRanderMark(!reRanderMark);
   };
 
   useEffect(() => {
@@ -64,31 +70,29 @@ const MarkedDetalse = ({route}: any) => {
     setCtlBookeMarked(0);
   }, [ctlBookeMarked]);
 
-  const handleTaskUpdate = (data: any) => {
+  const handleTaskUpdate = (data: { title: string; description: string; }) => {
     setTitle(data.title);
     setDescription(data.description);
     setIsBottomSheetVisible(false)
   };
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <ScrollView contentContainerStyle={styles.container}>
-        {/* <View style={styles.header}>
-          <BoltIcon size={30} strokeWidth={2} color="#000" />
-        </View> */}
-
+   <>
+      <ScrollView style={{...styles.container, backgroundColor: appBackground}}>
         {title && (
-          <Text selectable={true} style={styles.title}>
+          <Text selectable={true} style={{...styles.title, color: textColor}}>
             {titles}
           </Text>
         )}
 
         {description && (
-          <Text selectable={true} style={styles.desc}>
+          <Text selectable={true} style={{...styles.desc, color: textColor}}>
             {descriptions}
           </Text>
         )}
-      </ScrollView>
+     </ScrollView>
+
+
       {isBottomSheetVisible && (
         <BottomSheet
           snapPoints={['100%']}
@@ -98,20 +102,21 @@ const MarkedDetalse = ({route}: any) => {
             setIsBottomSheetVisible(false);
           }}
           handleIndicatorStyle={{
-            backgroundColor: '#0b958c',
+            backgroundColor: indicatorBgColor,
             width: 100,
           }}
-          backgroundStyle={{backgroundColor: '#FFF'}}>
+          backgroundStyle={{backgroundColor: shitBgColor}}>
           <BottomSheetScrollView>
            
             <SheetInput
-              onData={route.params.data}
+              onData={{titles, descriptions, id}}
               onTaskUpdate={handleTaskUpdate}
             />
           </BottomSheetScrollView>
         </BottomSheet>
       )}
-    </SafeAreaView>
+      
+ </>
   );
 };
 
@@ -119,12 +124,13 @@ export default MarkedDetalse;
 
 const styles = StyleSheet.create({
   safeArea: {
-    flex: 1,
-    backgroundColor: '#f6f8fa',
+    
   },
   container: {
     paddingHorizontal: 10,
     paddingTop: 10,
+    flex: 1,
+   
   },
   title: {
     color: '#0a1930',
